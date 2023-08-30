@@ -1,0 +1,101 @@
+const keys = require("./keys");
+
+// Express Application setup
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+// Postgres client setup
+const { Pool } = require("pg");
+const pgClient = new Pool({
+  user: keys.pgUser,
+  host: keys.pgHost,
+  database: keys.pgDatabase,
+  password: keys.pgPassword,
+  port: keys.pgPort
+});
+
+pgClient.on("connect", client => {
+  client
+    .query(`CREATE TABLE IF NOT EXISTS values (
+      account TEXT, 
+      sector TEXT[],
+      engagement TEXT,
+      startdate DATE,
+      enddate DATE,
+      channel TEXT[],
+      owner TEXT,
+      originator TEXT,
+      role TEXT[],
+      location TEXT,
+      revenue INT,
+      forecast TEXT[],
+      notes TEXT,
+      grade TEXT[]
+      )
+      `)
+    .catch(err => console.log("PG ERROR", err));
+});
+
+//Express route definitions
+app.get("/", (req, res) => {
+  res.send("John server");
+});
+
+// get the values
+app.get("/values/all", async (req, res) => {
+  try {
+    const values = await pgClient.query("SELECT * FROM values");
+    const jsonData = values.rows.map(row => ({
+      account: row.account,
+      sector: row.sector,
+      engagement: row.engagement,
+      startdate: row.startdate,
+      enddate: row.enddate,
+      channel: row.channel,
+      owner: row.owner,
+      originator: row.originator,
+      role: row.role,
+      location: row.location,
+      revenue: row.revenue,
+      forecast: row.forecast,
+      notes: row.notes,
+      grade: row.grade,
+
+    }));
+    res.json(jsonData);
+  } catch (error) {
+    console.error("Error fetching values:", error);
+    res.status(500).json({ error: "Failed to fetch values from the database." });
+  }
+});
+
+
+// now the post -> insert value
+app.post("/values", async (req, res) => {
+  const { account, sector, engagement, startdate, enddate, channel, owner, originator, role, location, revenue, forecast, notes, grade } = req.body
+  if (!account || !sector || !engagement || !startdate || !enddate || !channel || !owner || !originator || !role || !location || !revenue || !forecast || !grade) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  try {
+    await pgClient.query(
+      "INSERT INTO values(account, sector, engagement, startdate, enddate, channel, owner, originator, role, location, revenue, forecast, notes, grade) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)",
+      [account, sector, engagement, startdate, enddate, channel, owner, originator, role, location, revenue, forecast, notes, grade]
+    );
+
+    res.json({ working: true });
+  } catch (error) {
+    console.error("Error inserting values:", error);
+    res.status(500).json({ error: "Failed to insert values into the database." });
+  }
+
+});
+
+app.listen(5000, err => {
+  console.log("Listening");
+});

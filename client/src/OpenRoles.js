@@ -6,7 +6,7 @@ import './OpenRoles.css'
 
 const OpenRoles = () => {
   const [values, setValues] = useState([])
-  // const [skills, setSkills] = useState([])
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,7 @@ const OpenRoles = () => {
   }, [setValues]);
  
   values.forEach(item => {
-    console.log('item', item.skills);
+    console.log('item', item.role);
   });
 
   return (
@@ -41,7 +41,7 @@ const OpenRoles = () => {
               <p>Sector: {value.sector}</p>
               <p>Engagement: {value.engagement}</p>
               <p>Location: {value.location}</p>
-              <p>Role: {value.role[0]}, {value.role[1]}, {value.role[2]}</p>
+              <p>Role: {value.role[0]} {value.role[1]} {value.role[2]}</p>
             </div>
           ))
         )}

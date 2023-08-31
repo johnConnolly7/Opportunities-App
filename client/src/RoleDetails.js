@@ -1,6 +1,6 @@
 import { data } from "./data"
 import { useParams} from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function RoleDetails() {
     const { id } = useParams() 

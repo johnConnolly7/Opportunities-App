@@ -22,6 +22,7 @@ const pgClient = new Pool({
 pgClient.on("connect", client => {
   client
     .query(`CREATE TABLE IF NOT EXISTS values (
+      id serial PRIMARY KEY,
       account TEXT, 
       sector TEXT[],
       engagement TEXT,
@@ -51,6 +52,7 @@ app.get("/values/all", async (req, res) => {
   try {
     const values = await pgClient.query("SELECT * FROM values");
     const jsonData = values.rows.map(row => ({
+      id: row.id,
       account: row.account,
       sector: row.sector,
       engagement: row.engagement,

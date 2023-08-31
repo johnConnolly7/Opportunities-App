@@ -4,16 +4,13 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import OpenRoles from "./OpenRoles"
 import AddOpportunities from "./AddOpportunities"
 import RoleDetails from "./RoleDetails";
+import Header from "./components/header/Header";
 
 function App() {
   return (
     <Router>
       <Fragment>
-        <header className="header">
-          <div>This is a johns site</div>
-          <Link to="/">Add Opportunity</Link>
-          <Link to="/otherpage">Open Roles</Link>
-        </header>
+       <Header></Header>
         <div className="main">
           <Routes>
           <Route exact path="/" element={< AddOpportunities />} />

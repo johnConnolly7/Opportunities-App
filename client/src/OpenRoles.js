@@ -43,7 +43,7 @@ return data.map(value => {
 
   return (
     <div className="body">
-       <span className="title">Values</span> 
+       {/* <span className="title">Values</span>  */}
        <div className="values">
         {values.length === 0 ? (
           <p>No values found</p>
@@ -67,16 +67,6 @@ return data.map(value => {
       <Link to="/">Go back to home screen</Link>
     </div>
   );
-
-  // function Link({to, children, ...props}) {
-  //   const resolvedPath = useResolvedPath(to)
-  //   const isActive = useMatch({path: resolvedPath.pathname, end: true})
-  //   return (
-  //     <Link to={to} {...props}>
-  //       {children}
-  //     </Link>
-  //   )
-  // }
 }
 
 

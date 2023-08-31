@@ -1,12 +1,25 @@
-import { Link } from "react-router-dom";
+
 import axios from "axios";
 import { useState, useEffect } from "react";
 import './OpenRoles.css'
+import { data } from "./data"
+import { useParams, Link, useMatch, useResolvedPath } from "react-router-dom"
 
+export function RoleDetails() {
+const { id } = useParams()
+return data.map(value => {
+  return (
+    < OpenRoles
+      key={value.id}
+      value={value}
+    />
+  )
+})
+}
 
-const OpenRoles = () => {
-  const [values, setValues] = useState([])
-  
+ function OpenRoles() {
+
+  const [values, setValues] = useState(data)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,35 +34,50 @@ const OpenRoles = () => {
 
     fetchData();
     
-  }, [setValues]);
+  }, [setValues]); 
  
   values.forEach(item => {
     console.log('item', item.role);
   });
+  //################################################################################################################
 
   return (
     <div className="body">
-      <br />
-      <span className="title">Values</span>
-      <div className="values">
+       <span className="title">Values</span> 
+       <div className="values">
         {values.length === 0 ? (
           <p>No values found</p>
         ) : (
           values.map((value, index) => (
+            <Link to={`/role/${value.id}`}>
             <div key={index} className="value">
+              
               <p>Account: {value.account}</p>
               <p>Sector: {value.sector}</p>
               <p>Engagement: {value.engagement}</p>
               <p>Location: {value.location}</p>
-              <p>Role: {value.role[0]} {value.role[1]} {value.role[2]}</p>
+              <p>Role: {value.role} </p>
             </div>
+            </Link>
           ))
         )}
-      </div>
-      <br />
+      </div> 
+      
+
       <Link to="/">Go back to home screen</Link>
     </div>
   );
-};
+
+  // function Link({to, children, ...props}) {
+  //   const resolvedPath = useResolvedPath(to)
+  //   const isActive = useMatch({path: resolvedPath.pathname, end: true})
+  //   return (
+  //     <Link to={to} {...props}>
+  //       {children}
+  //     </Link>
+  //   )
+  // }
+}
+
 
 export default OpenRoles;

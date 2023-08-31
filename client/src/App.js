@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import OpenRoles from "./OpenRoles"
 import AddOpportunities from "./AddOpportunities"
+import RoleDetails from "./RoleDetails";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
           <Route exact path="/" element={< AddOpportunities />} />
           <Route path="/otherpage" element={< OpenRoles />} />
+          <Route path="/role/:id" element={ <RoleDetails /> } />
           </Routes>
         </div>
       </Fragment>

@@ -15,7 +15,7 @@ function App() {
           <Routes>
           <Route exact path="/" element={< AddOpportunities />} />
           <Route path="/otherpage" element={< OpenRoles />} />
-          <Route path="/role/:id" element={ <RoleDetails /> } />
+          <Route path="/:id" element={ <RoleDetails /> } />
           </Routes>
         </div>
       </Fragment>

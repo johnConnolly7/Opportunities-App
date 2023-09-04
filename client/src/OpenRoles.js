@@ -35,11 +35,6 @@ return data.map(value => {
     fetchData();
     
   }, [setValues]); 
- 
-  values.forEach(item => {
-    console.log('item', item.role);
-  });
-  //################################################################################################################
 
   return (
     <div className="body">
@@ -49,7 +44,7 @@ return data.map(value => {
           <p>No values found</p>
         ) : (
           values.map((value, index) => (
-            <Link to={`/role/${value.id}`}>
+            <Link to={`/${value.id}`}>
             <div key={index} className="value">
               
               <p>Account: {value.account}</p>

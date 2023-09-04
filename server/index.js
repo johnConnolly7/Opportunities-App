@@ -76,37 +76,18 @@ app.get("/values/all", async (req, res) => {
   }
 });
 
+// Add a new endpoint to fetch unique roles
+app.get("/api/roles", async (req, res) => {
+  try {
+    const roles = await pgClient.query("SELECT DISTINCT UNNEST(role) AS role FROM values");
+    const uniqueRoles = roles.rows.map((row) => row.role);
+    res.json(uniqueRoles);
+  } catch (error) {
+    console.error("Error fetching unique roles:", error.response.data);
+    res.status(500).json({ error: "Failed to fetch unique roles from the database." });
+  }
+});
 
-// app.get("/values/:id", async (req, res) => {
-
-//   try {
-//     const values = await pgClient.query("SELECT * FROM values WHERE id = $1 "
-// );
-//     const jsonData = values.rows.map(row => ({
-//       id: row.id,
-//       account: row.account,
-//       sector: row.sector,
-//       engagement: row.engagement,
-//       startdate: row.startdate,
-//       enddate: row.enddate,
-//       channel: row.channel,
-//       owner: row.owner,
-//       originator: row.originator,
-//       role: row.role,
-//       location: row.location,
-//       revenue: row.revenue,
-//       forecast: row.forecast,
-//       notes: row.notes,
-//       grade: row.grade,
-
-//     }));
-//     res.json(jsonData);
-//   } catch (error) {
-//     console.error("Error fetching values:", error);
-//     res.status(500).json({ error: "Failed to fetch values from the database." });
-//   }
-
-// })
 
 app.get("/values/:id", async (req, res) => {
   const { id } = req.params

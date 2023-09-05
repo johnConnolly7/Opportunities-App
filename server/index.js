@@ -47,6 +47,23 @@ app.get("/", (req, res) => {
   res.send("John server");
 });
 
+app.put("/values/:id", async (req, res) => {
+  const { id } = req.params;
+  const { forecast } = req.body;
+
+  try {
+    await pgClient.query(
+      "UPDATE values SET forecast = $1 WHERE id = $2",
+      [forecast, id]
+    );
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error updating forecast:", error);
+    res.status(500).json({ error: "Failed to update forecast in the database." });
+  }
+});
+
 // get the values
 app.get("/values/all", async (req, res) => {
   try {

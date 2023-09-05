@@ -18,6 +18,7 @@ const AddOpportunities = () => {
   const [ selectedForecast, setSelectedForecast ] = useState([])
   const [ notes, setNotes ] = useState("")
   const [ selectedGrade, setSelectedGrade ] = useState([])
+  const [successMessage, setSuccessMessage ] = useState("")
   
 
 
@@ -55,6 +56,7 @@ const AddOpportunities = () => {
       setSelectedForecast([])
       setNotes("")
       setSelectedGrade([])
+      setSuccessMessage("Role added successfully")
     },
     [account, selectedSector, engagement, startdate, enddate, selectedChannel, owner, originator, selectedRole, location, revenue, selectedForecast, notes, selectedGrade]
   );
@@ -105,6 +107,7 @@ const AddOpportunities = () => {
   };
 
   return (
+    <div>
     <form onSubmit={saveInfo}>
     <label>Account</label>
     <input 
@@ -479,6 +482,8 @@ const AddOpportunities = () => {
 
       <button type="submit"> Add a Role </button>
       </form>
+      {successMessage && <div className="success-message">{successMessage}</div>}
+      </div>
   )
 
 };

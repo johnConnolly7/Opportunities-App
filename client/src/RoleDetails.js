@@ -3,12 +3,14 @@ import { useParams} from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EditRole from "./components/edit/EditRole";
 //import { API_ENDPOINT } from "./utils/utils";
 
 function RoleDetails() {
     const { id } = useParams() 
     const [values, setValues] = useState()
     const [selectedForecast, setSelectedForecast] = useState([]);
+    const [isEditing, setIsEditing ] = useState(false)
 
     useEffect(() => {
       const fetchData = async () => {
@@ -27,30 +29,13 @@ function RoleDetails() {
       return <p> Loading ...</p>
     }
 
-    const handleForecastSelection = (event) => {
-      const { value, checked } = event.target;
-      if (checked) {
-        setSelectedForecast([...selectedForecast, value]);
-      } else {
-        setSelectedForecast(selectedForecast.filter((item) => item !== value));
-      }
-    };
-
-    const handleSaveForecast = async () => {
-      try {
-        const response = await axios.put(`/api/values/${id}`, {
-          forecast: selectedForecast,
-        });
-        console.log('Updated forecast:', response.data);
-      } catch (error) {
-        console.error('Error updating forecast:', error);
-      }
-    };
+    const toggleEdit = () => {
+      setIsEditing(!isEditing)
+    }
     
  
 return (
   <div className="body">
-  {/* <span className="title">Values</span>  */}
   <div className="values">
    {values.length === 0 ? (
      <p>No values found</p>
@@ -70,97 +55,16 @@ return (
      ))
    )}
  </div> 
- <form>
- <label>Sales Forecast</label>
-          <ul>
-            {/* Render checkbox inputs and labels for each forecast option */}
-            <li>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Firm (100%)"
-                  checked={selectedForecast.includes("Firm (100%)")}
-                  onChange={handleForecastSelection}
-                />
-                Firm (100%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Firm (100%) Working at Risk"
-                  checked={selectedForecast.includes("Firm (100%) Working at Risk")}
-                  onChange={handleForecastSelection}
-                />
-                Firm (100%) Working at Risk
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Confident (90%)"
-                  checked={selectedForecast.includes("Confident (90%)")}
-                  onChange={handleForecastSelection}
-                />
-                Confident (90%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Probable (60%)"
-                  checked={selectedForecast.includes("Probable (60%)")}
-                  onChange={handleForecastSelection}
-                />
-                Probable (60%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Probable (60%)"
-                  checked={selectedForecast.includes("Probable (60%)")}
-                  onChange={handleForecastSelection}
-                />
-                Probable (60%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Possible (40%)"
-                  checked={selectedForecast.includes("Possible (40%)")}
-                  onChange={handleForecastSelection}
-                />
-                Possible (40%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Longshot (10%)"
-                  checked={selectedForecast.includes("Longshot (10%)")}
-                  onChange={handleForecastSelection}
-                />
-                Longshot (10%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Lead (1%)"
-                  checked={selectedForecast.includes("Lead (1%)")}
-                  onChange={handleForecastSelection}
-                />
-                Lead (1%)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Lost"
-                  checked={selectedForecast.includes("Lost")}
-                  onChange={handleForecastSelection}
-                />
-                Lost
-              </label>
-            </li>
-           
-          </ul>
-          <button onClick={handleSaveForecast}>Save</button>
- </form>
+ <button onClick={toggleEdit}>Edit</button>
+ {isEditing && (
+  <EditRole 
+  id={id}
+  selectedForecast={selectedForecast}
+  setSelectedForecast={setSelectedForecast}
+  onClose={toggleEdit}
+  />
+ )}
+ 
  
 
  <Link to="/">Go back to home screen</Link>

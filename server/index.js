@@ -47,6 +47,23 @@ app.get("/", (req, res) => {
   res.send("John server");
 });
 
+app.put("/values/:id", async (req, res) => {
+  const { id } = req.params;
+  const { forecast } = req.body;
+
+  try {
+    await pgClient.query(
+      "UPDATE values SET forecast = $1 WHERE id = $2",
+      [forecast, id]
+    );
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error updating forecast:", error);
+    res.status(500).json({ error: "Failed to update forecast in the database." });
+  }
+});
+
 // get the values
 app.get("/values/all", async (req, res) => {
   try {
@@ -76,7 +93,7 @@ app.get("/values/all", async (req, res) => {
   }
 });
 
-// Add a new endpoint to fetch unique roles
+
 app.get("/api/roles", async (req, res) => {
   try {
     const roles = await pgClient.query("SELECT DISTINCT UNNEST(role) AS role FROM values");
@@ -118,8 +135,6 @@ app.get("/values/:id", async (req, res) => {
 })
 
 
-
-// now the post -> insert value
 app.post("/values", async (req, res) => {
   const { account, sector, engagement, startdate, enddate, channel, owner, originator, role, location, revenue, forecast, notes, grade } = req.body
   if (!account || !sector || !engagement || !startdate || !enddate || !channel || !owner || !originator || !role || !location || !revenue || !forecast || !grade) {

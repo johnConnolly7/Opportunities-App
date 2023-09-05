@@ -29,7 +29,6 @@ function OpenRoles() {
         const response = await axios.get("api/values/all");
         const data = response.data;
         setValues(data);
-        // Extract all unique roles from the data
         const allRoles = Array.from(
           new Set(data.flatMap((item) => item.role))
         );
@@ -42,12 +41,10 @@ function OpenRoles() {
     fetchData();
   }, []);
 
-  // Function to filter values based on selected roles
   const filteredValues = values.filter((value) =>
     selectedRoles.length === 0 || value.role.some((role) => selectedRoles.includes(role))
   );
 
-  // Function to handle role filter changes
   const handleRoleChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
   };
@@ -58,7 +55,6 @@ function OpenRoles() {
 
   return (
     <div className="body">
-      {/* Render the RoleFilter component */}
       <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
       <button onClick={resetFilter}>Reset Filter</button>
 

@@ -63,7 +63,7 @@ function OpenRoles() {
 
   return (
     <div className="body">
-      <button className="filter-button" onClick={() => setShowFilter(!showFilter)}>{showFilter ? "Hide Filter" : "Filter by Role"}</button>
+      <button className="filter-button" onClick={() => setShowFilter(!showFilter)}>{showFilter ? "Hide Filter" : "Show Filter"}</button>
       {showFilter && (
       <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
       )}

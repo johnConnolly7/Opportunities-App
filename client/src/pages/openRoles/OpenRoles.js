@@ -23,6 +23,7 @@ function OpenRoles() {
   //const [values, setValues] = useState(data)
   const [roles, setRoles] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState([]);
+  const [ showFilter, setShowFilter ] = useState(false)
   
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +51,9 @@ function OpenRoles() {
     setSelectedRoles(selectedRoles);
   };
 
-  const resetFilter = () => {
-    setSelectedRoles([])
-  }
+  // const resetFilter = () => {
+  //   setSelectedRoles([])
+  // }
 
   function formatDate(dateString) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit'}
@@ -62,8 +63,11 @@ function OpenRoles() {
 
   return (
     <div className="body">
+      <button className="filter-button" onClick={() => setShowFilter(!showFilter)}>{showFilter ? "Hide Filter" : "Filter by Role"}</button>
+      {showFilter && (
       <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
-      <button onClick={resetFilter}>Reset Filter</button>
+      )}
+      {/* <button onClick={resetFilter}>Reset Filter</button> */}
 
       <div className="values">
         {filteredValues.length === 0 ? (

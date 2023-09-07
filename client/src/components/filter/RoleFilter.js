@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './RoleFilter.css'
 
 function RoleFilter({ roles, onFilterChange }) {
   const [selectedRoles, setSelectedRoles] = useState([]);
@@ -15,16 +16,16 @@ function RoleFilter({ roles, onFilterChange }) {
   
   };
 
-  // Call the parent component's filter function whenever the selected roles change
+ 
   React.useEffect(() => {
     onFilterChange(selectedRoles);
   }, [selectedRoles, onFilterChange]);
 
   return (
-    <div>
+    <div className="filter-body">
       <h2>Filter by Role</h2>
       {roles.map((role) => (
-        <label key={role}>
+        <label className="filter-label" key={role}>
           <input
             type="checkbox"
             value={role}

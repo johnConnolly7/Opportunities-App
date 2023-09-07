@@ -52,3 +52,14 @@ h4 {
   padding-right: 6px;
   text-align: center;
 }
+
+.filter-button {
+  padding: 5px 10px;
+  background-color: #5ca2d1;
+  font: 20px;
+  color: white;
+  border: 1px solid #5ca2d1;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}

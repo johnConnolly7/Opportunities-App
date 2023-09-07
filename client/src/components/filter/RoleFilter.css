@@ -1,0 +1,10 @@
+.filter-body {
+  background-color: #7291a3 ;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.filter-label {
+  margin-right: 10px;
+}

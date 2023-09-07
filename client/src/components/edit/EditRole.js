@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import './EditRole.css'
 
 
 function EditRole({ id, selectedForecast, setSelectedForecast, onClose}) {
@@ -28,10 +29,10 @@ function EditRole({ id, selectedForecast, setSelectedForecast, onClose}) {
   };
 
   return (
-    <div>
+    <div className="edit-form">
       {successMessage && <div className="success-message">{successMessage}</div>}
-      <form>
- <label>Sales Forecast</label>
+      <form className="edit-forecast">
+      <label>Sales Forecast</label>
           <ul>
             <li>
               <label>
@@ -109,8 +110,8 @@ function EditRole({ id, selectedForecast, setSelectedForecast, onClose}) {
             </li>
            
           </ul>
-          <button onClick={handleSaveForecast}>Save</button>
-          <button onClick={onclose}>Cancel</button>
+          <button className="btn-edit" onClick={handleSaveForecast}>Save</button>
+          <button className="btn-close" onClick={onclose}>Cancel</button>
  </form>
     </div>
   )

@@ -1,0 +1,118 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { data } from "../../data"
+import { useParams, Link } from "react-router-dom"
+import RoleFilter from "../../components/filter/RoleFilter";
+import "./OpenRoles.css"
+
+export function RoleDetails() {
+const { id } = useParams()
+return data.map(value => {
+  return (
+    < OpenRoles
+      key={value.id}
+      value={value}
+    />
+  )
+})
+}
+
+
+function OpenRoles() {
+  const [values, setValues] = useState([]);   //when using api
+  //const [values, setValues] = useState(data)
+  const [roles, setRoles] = useState([]);
+  const [selectedRoles, setSelectedRoles] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("api/values/all");
+        const data = response.data;
+        setValues(data);
+        const allRoles = Array.from(
+          new Set(data.flatMap((item) => item.role))
+        );
+        setRoles(allRoles);
+      } catch (error) {
+        console.error("Error fetching values:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const filteredValues = values.filter((value) =>
+    selectedRoles.length === 0 || value.role.some((role) => selectedRoles.includes(role))
+  );
+
+  const handleRoleChange = (selectedRoles) => {
+    setSelectedRoles(selectedRoles);
+  };
+
+  const resetFilter = () => {
+    setSelectedRoles([])
+  }
+
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit'}
+    const formattedDate = new Date(dateString).toLocaleDateString('en-GB', options)
+    return formattedDate
+  }
+
+  return (
+    <div className="body">
+      <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
+      <button onClick={resetFilter}>Reset Filter</button>
+
+      <div className="values">
+        {filteredValues.length === 0 ? (
+          <p>No values found</p>
+        ) : (
+          filteredValues.map((value, index) => (
+            <div className="link-value">
+              <Link to={`/${value.id}`} key={index} className="value" >
+                <div className="account">
+                  <h4>Account</h4>
+                  <h4>{value.account}</h4>
+                </div>
+                <div className="engagement">
+                  <h4>Engagement</h4>
+                  <h4>{value.engagement}</h4>
+                </div>
+                <div className="start-date">
+                  <h4>Start Date</h4>
+                  <h4>{formatDate(value.startdate)}</h4>
+                </div>
+                <div className="end-date">
+                  <h4>End Date</h4>
+                  <h4>{formatDate(value.enddate)}</h4>
+                </div>
+                <div className="owner">
+                  <h4>Owner</h4>
+                  <h4>{value.owner}</h4>
+                </div>
+                <div className="revenue">
+                  <h4>Revenue</h4>
+                  <h4>£{value.revenue}</h4>
+                </div>
+                <div className="forecast">
+                  <h4>Sales Forecast</h4>
+                  <h4>{value.forecast}</h4>
+                </div>
+
+                
+                
+                {/* <p>Role: {value.role.join(", ")} </p> */}
+              </Link>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default OpenRoles;
+
+ 

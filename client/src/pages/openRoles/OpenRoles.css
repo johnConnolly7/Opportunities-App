@@ -1,0 +1,54 @@
+.link-value {
+  background-color: #f9c0a8;
+  margin-top: 5px;
+  border-radius: 10px;
+  width: 98%;
+  margin-top: 10px;
+  margin-left: 1%;
+}
+
+.value {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-evenly;
+  text-decoration: none;
+  border-radius: 10%;
+  
+}
+
+h4 {
+  color: black;
+  line-height: 5px;
+  font-family: 'Lato', sans-serif;
+  
+}
+
+.account {
+  padding-left: 3px;
+  text-align: center;
+}
+
+.engagement {
+  text-align: center;
+}
+
+.startdate {
+  text-align: center;
+}
+
+.enddate {
+  text-align: center;
+}
+
+.owner {
+  text-align: center;
+}
+.revenue {
+  text-align: center;
+}
+
+.forecast {
+  padding-right: 6px;
+  text-align: center;
+}

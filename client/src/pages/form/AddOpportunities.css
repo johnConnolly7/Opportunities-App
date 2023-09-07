@@ -65,7 +65,17 @@ label {
   font-size: 20px;
 }
 
-input[type=date] {
+/* .start-date input[type=date] {
+  height: 30px;
+  width: 61%;
+} */
+
+input.end-date {
+  height: 30px;
+  width: 61%;
+}
+
+input.start-date {
   height: 30px;
   width: 61%;
 }

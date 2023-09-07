@@ -1,9 +1,8 @@
 import { Fragment } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import OpenRoles from "./OpenRoles"
-import AddOpportunities from "./AddOpportunities"
-import RoleDetails from "./RoleDetails";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import OpenRoles from "./pages/openRoles/OpenRoles"
+import AddOpportunities from "./pages/form/AddOpportunities";
+import RoleDetails from "./pages/details/RoleDetails";
 import Header from "./components/header/Header";
 
 function App() {
@@ -13,8 +12,8 @@ function App() {
        <Header></Header>
         <div className="main">
           <Routes>
-          <Route exact path="/" element={< AddOpportunities />} />
-          <Route path="/otherpage" element={< OpenRoles />} />
+          <Route exact path="/" element={ <OpenRoles />} />
+          <Route path="/otherpage" element={< AddOpportunities />} />
           <Route path="/:id" element={ <RoleDetails /> } />
           </Routes>
         </div>

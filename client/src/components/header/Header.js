@@ -14,8 +14,8 @@ function Header() {
         </div>
       </div>
     <div className="nav-bar">
-    <Link to="/">Add Opportunity</Link>
-    <Link to="/otherpage">Open Roles</Link>
+    <Link to="/">Open Roles</Link>
+    <Link to="/otherpage">Add Opportunity</Link>
     </div>
   </div>
   )

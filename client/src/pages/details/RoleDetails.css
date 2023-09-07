@@ -1,0 +1,27 @@
+.role-value {
+  display: flex;
+  justify-content: space-between;
+  background-color: #98b5ce ;
+  font-family: 'Lato', sans-serif;
+  border-radius: 0;
+  width: 95%;
+  margin-top: 20px;
+  margin-left: 2%;
+}
+
+.left{
+  max-width: 50%;
+  padding-left: 5%;
+}
+
+.right {
+  max-width: 50%;
+  padding-right: 5%;
+}
+
+.edit-btn {
+  background-color: #E55F4C;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  width: 50px;
+}

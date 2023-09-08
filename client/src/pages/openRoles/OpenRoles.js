@@ -69,9 +69,9 @@ function OpenRoles() {
       )}
       {/* <button onClick={resetFilter}>Reset Filter</button> */}
         
-          <Link to="/gridpage">
-          <button>Grid View</button>
-          </Link>
+          {/* <Link to="/gridpage">
+          <button className="grid-button">Grid View</button>
+          </Link> */}
       <div className="values">
         {filteredValues.length === 0 ? (
           <p>No values found</p>

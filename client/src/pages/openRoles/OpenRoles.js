@@ -68,7 +68,10 @@ function OpenRoles() {
       <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
       )}
       {/* <button onClick={resetFilter}>Reset Filter</button> */}
-
+        
+          {/* <Link to="/gridpage">
+          <button className="grid-button">Grid View</button>
+          </Link> */}
       <div className="values">
         {filteredValues.length === 0 ? (
           <p>No values found</p>

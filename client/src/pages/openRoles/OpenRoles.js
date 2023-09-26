@@ -19,8 +19,8 @@ return data.map(value => {
 
 
 function OpenRoles() {
-  const [values, setValues] = useState([]);   //when using api
-  //const [values, setValues] = useState(data)
+  //const [values, setValues] = useState([]);   //when using api
+  const [values, setValues] = useState(data)
   const [roles, setRoles] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState([]);
   const [ showFilter, setShowFilter ] = useState(false)
@@ -81,31 +81,31 @@ function OpenRoles() {
               <Link to={`/${value.id}`} key={index} className="value" >
                 <div className="account">
                   <h4>Account</h4>
-                  <h4>{value.account}</h4>
+                  <h3>{value.account}</h3>
                 </div>
                 <div className="engagement">
                   <h4>Engagement</h4>
-                  <h4>{value.engagement}</h4>
+                  <h3>{value.engagement}</h3>
                 </div>
                 <div className="start-date">
                   <h4>Start Date</h4>
-                  <h4>{formatDate(value.startdate)}</h4>
+                  <h3>{formatDate(value.startdate)}</h3>
                 </div>
                 <div className="end-date">
                   <h4>End Date</h4>
-                  <h4>{formatDate(value.enddate)}</h4>
+                  <h3>{formatDate(value.enddate)}</h3>
                 </div>
                 <div className="owner">
                   <h4>Owner</h4>
-                  <h4>{value.owner}</h4>
+                  <h3>{value.owner}</h3>
                 </div>
                 <div className="revenue">
                   <h4>Revenue</h4>
-                  <h4>£{value.revenue}</h4>
+                  <h3>£{value.revenue}</h3>
                 </div>
                 <div className="forecast">
                   <h4>Sales Forecast</h4>
-                  <h4>{value.forecast}</h4>
+                  <h3>{value.forecast}</h3>
                 </div>
 
                 

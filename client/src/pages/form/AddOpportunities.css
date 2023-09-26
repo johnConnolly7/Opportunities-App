@@ -65,14 +65,14 @@ label {
   font-size: 20px;
 }
 
-input.end-date {
+input.enddate {
   height: 30px;
-  width: 61%;
+  width: 61.5%;
 }
 
-input.start-date {
+input.startdate {
   height: 30px;
-  width: 61%;
+  width: 61.5%;
 }
 
 .success-message {

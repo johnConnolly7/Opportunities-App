@@ -127,7 +127,7 @@ const AddOpportunities = () => {
           <br/>
        <div start-fr>
          <label style={{paddingRight: "3px"}}>Start Date</label>
-         <input className="start-date"
+         <input className="startdate"
          onChange={event => {
           setStartdate(event.target.value)
          }}
@@ -300,7 +300,7 @@ const AddOpportunities = () => {
 
           <br/>
         <label style={{paddingRight: "50px"}}>End Date</label>
-       <input className="end-date"
+       <input className="enddate"
         onChange={event => {
         setEnddate(event.target.value)
         }}

@@ -11,7 +11,7 @@
     originator: "Tiff Henebury",
     role: "Frontend Engineer (React)",
     location: "Remote",
-    revenue: "£100,000,000",
+    revenue: "100,000,000",
     forecast: "Firm (100%)",
     notes: "Test",
     grade: "E0"
@@ -28,7 +28,7 @@
     originator: "Tiff Henebury",
     role: "Data Engineer ",
     location: "Remote",
-    revenue: "£100,000,000,000",
+    revenue: "100,000,000,000",
     forecast: "Firm (100%)",
     notes: "Test",
     grade: "Principle"
@@ -45,7 +45,7 @@
     originator: "Tiff Henebury",
     role: "Frontend Engineer (React)",
     location: "Remote",
-    revenue: "£100",
+    revenue: "100",
     forecast: "Firm (90%) Working at Risk",
     notes: "Don't tell anyone",
     grade: "E0"
@@ -62,7 +62,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£100,000,000",
+    revenue: "100,000,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -79,7 +79,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£300,000,000",
+    revenue: "300,000,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -96,7 +96,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£10,000",
+    revenue: "10,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -113,7 +113,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£150,000",
+    revenue: "150,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -130,7 +130,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£1000,000",
+    revenue: "1000,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -147,7 +147,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£300,000,000",
+    revenue: "300,000,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"
@@ -164,7 +164,7 @@
     originator: "Dr Hillary Jones",
     role: "Data Engineer",
     location: "Remote",
-    revenue: "£100,000",
+    revenue: "100,000",
     forecast: "Firm (90%)",
     notes: "Test",
     grade: "E0"

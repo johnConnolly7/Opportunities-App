@@ -53,7 +53,7 @@ return (
          <div className="left"> 
             <p>Account: {value.account}</p>
             <p>Engagement: {value.engagement}</p>
-            <p>Role: {value.role} </p>
+            <p>Role: {value.role[0]} <br />{value.role[1]} <br /> {value.role[2]}<br /> {value.role[3]} </p>
             <p>Start Date: {formatDate(value.startdate)} </p>
             <p>Owner: {value.owner} </p>
             <p>Revenue: £{value.revenue}</p>
@@ -66,7 +66,7 @@ return (
             <p>Sales Channel: {value.channel} </p>
             <p>End Date: {formatDate(value.enddate)} </p>
             <p>Originator: {value.originator} </p>
-            <p>Grades Wanted: {value.grade} </p>
+            <p>Grades Wanted: {value.grade[0]}  {value.grade[1]}  {value.grade[2]}  {value.grade[3]} </p>
             <p>Sales Forecast: {value.forecast}</p>
 
          </div>
@@ -88,9 +88,6 @@ return (
  </div> 
 
  
- 
-
- <Link to="/">Go back to home screen</Link>
 </div>
 
   )

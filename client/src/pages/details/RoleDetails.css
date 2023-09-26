@@ -22,6 +22,14 @@
 .edit-btn {
   background-color: #E55F4C;
   color: white;
+  font-size: 20px;
   font-family: 'Lato', sans-serif;
   width: 50px;
 }
+
+p {
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+}
+
+

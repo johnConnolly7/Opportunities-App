@@ -4,11 +4,13 @@ import { useState, useEffect } from "react"
 import axios from "axios";
 import { Link } from "react-router-dom";
 import EditRole from "../../components/edit/EditRole";
+import { useAuth } from "../../components/authcontext/AuthContext";
 //import { API_ENDPOINT } from "./utils/utils";
 import './RoleDetails.css'
 
 function RoleDetails() {
     const { id } = useParams() 
+    const { authenticated } = useAuth()
     const [values, setValues] = useState()
     const [selectedForecast, setSelectedForecast] = useState([]);
     const [isEditing, setIsEditing ] = useState(false)
@@ -71,8 +73,9 @@ return (
 
          </div>
 
-         <button className="edit-btn" onClick={toggleEdit}>Edit</button>
-          {isEditing && (
+          {authenticated && (
+         <button className="edit-btn" onClick={toggleEdit}>Edit</button> )}
+          {isEditing && authenticated && (
             <EditRole 
             id={id}
             selectedForecast={selectedForecast}

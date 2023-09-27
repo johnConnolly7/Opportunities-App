@@ -21,21 +21,43 @@ function RoleFilter({ roles, onFilterChange }) {
     onFilterChange(selectedRoles);
   }, [selectedRoles, onFilterChange]);
 
+  const splitIndex = Math.ceil(roles.length /2)
+  const firstColumnRoles = roles.slice(0, splitIndex)
+  const secondColumnRoles = roles.slice(splitIndex)
+
   return (
     <div className="filter-body">
       <h2>Filter by Role</h2>
-      {roles.map((role) => (
-        <label className="filter-label" key={role}>
-          <input
-            type="checkbox"
-            value={role}
-            checked={selectedRoles.includes(role)}
-            onChange={handleRoleChange}
-          />
-          {role}
-        </label>
-      ))}
-    
+      <div className="filter-columns">
+        <div className="first-column">
+          {firstColumnRoles.map((role) => (
+            <label className="filter-label" key={role}>
+              <input
+                type="checkbox"
+                value={role}
+                checked={selectedRoles.includes(role)}
+                onChange={handleRoleChange}
+              /> 
+              {role}
+              <br/>
+            </label>
+          ))}
+        </div>
+        <div className="second-column">
+          {secondColumnRoles.map((role) => (
+            <label className="filter-label" key={role}>
+              <input
+                type="checkbox"
+                value={role}
+                checked={selectedRoles.includes(role)}
+                onChange={handleRoleChange}
+              />
+              {role}
+              <br/>
+            </label>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

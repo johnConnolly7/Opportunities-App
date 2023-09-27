@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { data } from "../../data"
 import { useParams, Link } from "react-router-dom"
 import RoleFilter from "../../components/filter/RoleFilter";
+import GradeFilter from "../../components/filter/GradeFilter";
 import "./OpenRoles.css"
 
 export function RoleDetails() {
@@ -19,10 +20,12 @@ return data.map(value => {
 
 
 function OpenRoles() {
-  //const [values, setValues] = useState([]);   //when using api
-  const [values, setValues] = useState(data)
+  const [values, setValues] = useState([]);   //when using api
+  //const [values, setValues] = useState(data)
   const [roles, setRoles] = useState([]);
+  const [grades, setGrades] = useState([])
   const [selectedRoles, setSelectedRoles] = useState([]);
+  const [ selectedGrades, setSelectedGrades ] = useState([])
   const [ showFilter, setShowFilter ] = useState(false)
   
   useEffect(() => {
@@ -35,6 +38,11 @@ function OpenRoles() {
           new Set(data.flatMap((item) => item.role))
         );
         setRoles(allRoles);
+
+        const allGrades = Array.from(
+          new Set(data.flatMap((item) => item.grade))
+        )
+        setGrades(allGrades)
       } catch (error) {
         console.error("Error fetching values:", error);
       }
@@ -44,12 +52,17 @@ function OpenRoles() {
   }, []);
 
   const filteredValues = values.filter((value) =>
-    selectedRoles.length === 0 || value.role.some((role) => selectedRoles.includes(role))
+    (selectedRoles.length === 0 || value.role.some((role) => selectedRoles.includes(role))) &&
+    (selectedGrades.length === 0 || value.grade.some((grade) => selectedGrades.includes(grade)))
   );
 
   const handleRoleChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
   };
+
+  const handleGradeChange = (selectedGrades) => {
+    setSelectedGrades(selectedGrades)
+  }
 
   // const resetFilter = () => {
   //   setSelectedRoles([])
@@ -64,8 +77,10 @@ function OpenRoles() {
   return (
     <div className="body">
       <button className="filter-button" onClick={() => setShowFilter(!showFilter)}>{showFilter ? "Hide Filter" : "Show Filter"}</button>
-      {showFilter && (
-      <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} />
+      {showFilter && ( <div className="both-filters">
+      <RoleFilter roles={roles} selectedRoles={selectedRoles} onFilterChange={handleRoleChange} /> 
+      <GradeFilter grades={grades} selectedGrades={selectedGrades} onFilterChange={handleGradeChange} />
+      </div>
       )}
       {/* <button onClick={resetFilter}>Reset Filter</button> */}
         

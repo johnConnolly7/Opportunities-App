@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
 import "./Header.css"
 import logo from "../../images/Credera.svg"
+import { useAuth } from "../authcontext/AuthContext"
 
 function Header() {
+  const { authenticated, logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+  }
+
   return (
     <div className="header">
       <div className="logo-title">
@@ -15,7 +22,15 @@ function Header() {
       </div>
     <div className="nav-bar">
     <Link to="/">Open Roles</Link>
-    <Link to="/otherpage">Add Opportunity</Link>
+    {authenticated ? (
+      <>
+      <Link to="/otherpage">Add Opportunity</Link> 
+      <button onClick={handleLogout} >Logout</button>
+      </>
+    ) : (
+      <Link to="/login">Admin</Link>
+    )}
+    
     </div>
   </div>
   )

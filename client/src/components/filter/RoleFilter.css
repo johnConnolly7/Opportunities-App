@@ -1,9 +1,30 @@
 .filter-body {
   background-color: #7291a3 ;
-
+  width: 70%;
 }
 
 .filter-label {
   margin-right: 10px;
-  display: block;
+  width: 0%;
 }
+
+.filter-columns{
+  display: flex;
+}
+
+.first-column {
+  width: 50%;
+  padding-bottom: 10px;
+}
+
+.second-column {
+  width: 50%;
+  padding-bottom: 10px;
+}
+
+.grade-filter-body {
+  background-color: #7291a3;
+  width: 30%;
+  padding-left: 5%;
+}
+

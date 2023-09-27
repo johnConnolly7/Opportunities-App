@@ -1,8 +1,8 @@
-import { data } from "../../data";
+//import { data } from "../../data";
 import { useParams} from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import EditRole from "../../components/edit/EditRole";
 import { useAuth } from "../../components/authcontext/AuthContext";
 //import { API_ENDPOINT } from "./utils/utils";
@@ -41,6 +41,14 @@ function RoleDetails() {
       const formattedDate = new Date(dateString).toLocaleDateString('en-GB', options)
       return formattedDate
     }
+
+    const handleDelete = async () => {
+      try {
+        await axios.delete(`/api/values/${id}`)
+      } catch (error) {
+        console.error("Error deleting role", error)
+      }
+    }
     
  
 return (
@@ -74,7 +82,11 @@ return (
          </div>
 
           {authenticated && (
-         <button className="edit-btn" onClick={toggleEdit}>Edit</button> )}
+            <>
+         <button className="edit-btn" onClick={toggleEdit}>Edit</button>
+         <button className="delete-btn" onClick={handleDelete} >Delete</button> 
+         </>
+         )}
           {isEditing && authenticated && (
             <EditRole 
             id={id}

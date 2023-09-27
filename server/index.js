@@ -47,6 +47,19 @@ app.get("/", (req, res) => {
   res.send("John server");
 });
 
+//delete post 
+app.delete("values/:id", async (req, res) => {
+  const { id } = req.params
+
+  try {
+    await pgClient.query("DELETE FROM values WHERE id = $1", [id])
+    res.json({ success: true })
+  } catch (error) {
+    console.error("Error deleting role:", error)
+    res.status(500).json({error: "Failed to delete role from database"})
+  }
+})
+
 app.put("/values/:id", async (req, res) => {
   const { id } = req.params;
   const { forecast } = req.body;
